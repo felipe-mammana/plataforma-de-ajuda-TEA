@@ -2,7 +2,6 @@
 session_start();
 include "C:/xampp/htdocs/tentativa-1/conexao.php";
 
-// Verificar login
 if (empty($_SESSION['id_temp']) && empty($_GET['id_temp'])) {
     header("Location: /tentativa-1/index/login/login_user.php");
     exit();
@@ -10,7 +9,6 @@ if (empty($_SESSION['id_temp']) && empty($_GET['id_temp'])) {
 
 $id_temp = $_SESSION['id_temp'] ?? $_GET['id_temp'];
 
-// Buscar dados do usuário
 $sql = "SELECT id_temp, nome, sobrenome, plano FROM tb_user_temp WHERE id_temp = ?";
 $stmt = $cone->prepare($sql);
 $stmt->bind_param("i", $id_temp);
@@ -20,11 +18,9 @@ $user = $result->fetch_assoc();
 
 if (!$user) die("Usuário não encontrado.");
 
-// Configuração PIX
 $chavePix = "48020835806"; 
 $descricao = "Pagamento do plano Altus";
 
-// Definir valores e códigos conforme o plano
 $plano = strtolower($user['plano']); 
 switch ($plano) {
     case "ouro":
