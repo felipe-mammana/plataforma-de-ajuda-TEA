@@ -1,5 +1,5 @@
 <?php
-// labirinto_corrigido.php
+
 require_once 'C:xampp/htdocs/tentativa-1/helpers.php';
 if (isset($_SESSION['id_user']) && !empty($_SESSION['id_user'])) {
     $id = ensureLoggedInUser();
@@ -8,7 +8,7 @@ if (isset($_SESSION['id_user']) && !empty($_SESSION['id_user'])) {
     $id = ensureLoggedInMedico();
     $role = 'medico';
 } else {
-    // Se não houver ninguém logado, redireciona para a página de login do usuário
+    
     header('Location: /tentativa-1/index/login/login_user.php');
     exit();
 }
@@ -27,8 +27,8 @@ $labirinto = [
 ];
 
 $labirintoJson = json_encode($labirinto);
-$inicio = ['x' => 0, 'y' => 0]; // início no canto superior esquerdo
-$fim = ['x' => 9, 'y' => 9];    // saída no canto inferior direito
+$inicio = ['x' => 0, 'y' => 0]; 
+$fim = ['x' => 9, 'y' => 9];    
 $id_ex = isset($_GET['id_ex']) ? intval($_GET['id_ex']) : 0;
 $inicioJson = json_encode($inicio);
 $fimJson = json_encode($fim);
@@ -118,7 +118,7 @@ $fimJson = json_encode($fim);
         let mousePressionado = false;
 
         const EX_ID = <?php echo $id_ex; ?>;
-        const userRole = '<?php echo $role; ?>'; // Adicionado: Passa o tipo de usuário
+        const userRole = '<?php echo $role; ?>'; 
 
         function desenharLabirinto() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -222,14 +222,14 @@ $fimJson = json_encode($fim);
         }
 
         async function marcarProgresso(tipo) {
-            // Se for médico, apenas mostra a mensagem e fecha a janela
+          
             if (userRole === 'medico') {
                 mostrarConfirmacao('Fechando a aba...', false);
                 setTimeout(() => { try { window.close(); } catch(e) {} }, 1000);
                 return;
             }
 
-            // Se for usuário, executa a lógica de salvamento
+            
             if (userRole === 'user') {
                 const mensagens = {
                     'sozinho': '✅ Registrado: Fez sozinho!',
