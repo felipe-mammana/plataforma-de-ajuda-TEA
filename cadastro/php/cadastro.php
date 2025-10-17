@@ -7,7 +7,7 @@ ini_set('default_socket_timeout', 300);
 
 session_start();
 
-// ⭐⭐ SEMPRE GERA DADOS ALEATÓRIOS QUANDO A PÁGINA ABRE ⭐⭐
+
 function gerarCPF() {
     $n = [];
     for ($i = 0; $i < 9; $i++) {
@@ -75,7 +75,7 @@ $dados_predefinidos = [
 
 $_SESSION['dados_pre_carregados'] = $dados_predefinidos;
 
-// Processamento do formulário
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include "C:/xampp/htdocs/tentativa-1/conexao.php";
 
@@ -93,7 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $emailR        = trim($_POST['emailR'] ?? '');
     $cpf           = trim($_POST['cpf'] ?? '');
 
-    // Uploads (mantém como está)
+   
     $foto_perfil = (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] == 0) 
                      ? file_get_contents($_FILES['foto_perfil']['tmp_name']) : null;
     $ftresponsavel = (isset($_FILES['ftresponsavel']) && $_FILES['ftresponsavel']['error'] == 0) 
@@ -126,7 +126,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id_temp = $cone->insert_id;
         $stmt->close();
 
-        // Limpa os dados pré-carregados após uso bem-sucedido
         unset($_SESSION['dados_pre_carregados']);
 
         // Redireciona para a tela de pagamento
@@ -149,7 +148,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Função para marcar checkboxes como checked
 function isChecked($value) {
     if (isset($_SESSION['dados_pre_carregados']['dificuldades']) && 
         is_array($_SESSION['dados_pre_carregados']['dificuldades'])) {
@@ -158,7 +156,7 @@ function isChecked($value) {
     return '';
 }
 
-// Função para selecionar option
+
 function isSelected($field, $value) {
     if (isset($_SESSION['dados_pre_carregados'][$field])) {
         return $_SESSION['dados_pre_carregados'][$field] == $value ? 'selected' : '';
@@ -166,7 +164,7 @@ function isSelected($field, $value) {
     return '';
 }
 
-// Função para preencher valores dos campos
+
 function getValue($field) {
     return isset($_SESSION['dados_pre_carregados'][$field]) 
         ? htmlspecialchars($_SESSION['dados_pre_carregados'][$field]) 
