@@ -12,7 +12,6 @@ $qrcodepix = $_POST['codigo_pix'] ?? null;
 
 if (empty($id_temp) || empty($valor)) die("Dados inválidos.");
 
-// Diretório de uploads
 $dir = "C:/xampp/htdocs/tentativa-1/comprovantes/";
 if (!is_dir($dir)) mkdir($dir, 0777, true);
 
@@ -25,7 +24,7 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
     if (move_uploaded_file($_FILES['comprovante']['tmp_name'], $caminho)) {
         $cone->begin_transaction();
         try {
-            // Buscar usuário temporário
+            
             $sql = "SELECT * FROM tb_user_temp WHERE id_temp = ?";
             $stmt = $cone->prepare($sql);
             if ($stmt === false) throw new Exception("Erro na preparação da busca por usuário temp: " . $cone->error);
@@ -38,7 +37,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
             $chavePix = "48020835806";
             $codigoPix = $qrcodepix;
 
-            // Pagamento
             $sql = "INSERT INTO tb_pagamentos (id_user, valor, chave_pix, codigo_pix, status, criado_em) 
                      VALUES (?, ?, ?, ?, 'pendente', NOW())";
             $stmt = $cone->prepare($sql);
@@ -48,7 +46,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
             $id_pagamento = $stmt->insert_id;
             $stmt->close();
 
-            // Comprovante
             $sql = "INSERT INTO tb_comprovantes (id_pagamento, nome_arquivo, caminho, tipo, tamanho, enviado_em) 
                      VALUES (?, ?, ?, ?, ?, NOW())";
             $stmt = $cone->prepare($sql);
@@ -57,7 +54,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
             $stmt->execute();
             $stmt->close();
 
-            // Migrar usuário
             $sql = "INSERT INTO tb_user (nome, sobrenome, idade, cpf, plano, data_cadastro, foto) 
                      VALUES (?, ?, ?, ?, ?, NOW(), ?)";
             $stmt = $cone->prepare($sql);
@@ -68,7 +64,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
             $id_user = $stmt->insert_id;
             $stmt->close();
 
-            // Login
             $sql = "INSERT INTO tb_login (id_user, email, senha, tipo) VALUES (?, ?, ?, 'user')";
             $stmt = $cone->prepare($sql);
             if ($stmt === false) throw new Exception("Erro na preparação do login: " . $cone->error);
@@ -76,7 +71,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
             $stmt->execute();
             $stmt->close();
 
-            // Médicos
             $sql = "INSERT INTO tb_user_med (id_user, grau, dificuldades, laudo) VALUES (?, ?, ?, ?)";
             $stmt = $cone->prepare($sql);
             if ($stmt === false) throw new Exception("Erro na preparação dos dados médicos: " . $cone->error);
@@ -84,7 +78,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
             $stmt->execute();
             $stmt->close();
 
-            // Responsável
             $sql = "INSERT INTO tb_responsavel (id_user, nome, email, telefone, cpf, foto) 
                      VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $cone->prepare($sql);
@@ -94,7 +87,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
             $stmt->execute();
             $stmt->close();
 
-            // Limpa temp
             $sql = "DELETE FROM tb_user_temp WHERE id_temp = ?";
             $stmt = $cone->prepare($sql);
             if ($stmt === false) throw new Exception("Erro na preparação da limpeza de dados temporários: " . $cone->error);
@@ -104,7 +96,6 @@ if (isset($_FILES['comprovante']) && $_FILES['comprovante']['error'] == 0) {
 
             $cone->commit();
 
-            // E-mail
             $mail = new PHPMailer(true);
             $mail->isSMTP();
             $mail->Host = 'smtp.gmail.com';
