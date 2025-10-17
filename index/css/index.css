@@ -1,0 +1,376 @@
+/* Logo e mascote */
+.logo-img {
+  height: 50px;
+}
+
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  padding-top: 100px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #003e3e;
+  color: #fff;
+  padding: 20px 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #00c1a0;
+}
+
+.hero {
+  background-image: url('../img/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: #fff;
+  padding: 150px 20px;
+  text-align: center;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 62, 62, 0.6);
+  z-index: 0;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero h2 {
+  font-size: 2.8rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: #00c1a0;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #00897b;
+  transform: translateY(-3px);
+}
+
+.section {
+  padding: 80px 20px;
+  text-align: center;
+  max-width: 900px;
+  margin: auto;
+}
+
+.section h2 {
+  font-size: 2.2rem;
+  color: #003e3e;
+  margin-bottom: 20px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #003e3e;
+  color: #fff;
+  margin-top: 40px;
+}
+section {
+  scroll-margin-top: 120px; /* altura do header */
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .hero h2 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .section h2 {
+    font-size: 1.8rem;
+  }
+}
+/*CASOS*/
+.cases-intro {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.cases-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.case-card {
+  background-color: #fff;
+  border-left: 5px solid #00c1a0;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.case-card:hover {
+  transform: translateY(-5px);
+}
+
+.case-card h3 {
+  color: #003e3e;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.case-card p {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .cases-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/*SOBRE*/
+.sobre-section {
+  background-color: #fff;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.sobre-section h2 {
+  font-size: 2.4rem;
+  color: #003e3e;
+  margin-bottom: 10px;
+}
+
+.sobre-subtitulo {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 50px;
+}
+
+.sobre-blocos {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.sobre-bloco {
+  background-color: #f4fdfd;
+  border-left: 5px solid #00c1a0;
+  border-radius: 12px;
+  padding: 25px;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+
+.sobre-bloco:hover {
+  transform: translateY(-5px);
+}
+
+.sobre-bloco h3 {
+  color: #003e3e;
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.sobre-bloco p {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .sobre-blocos {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/*PLANOS DE PAGAMENTO*/
+.plan-section {
+  background-color: #f4fdfd;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.plan-section h2 {
+  font-size: 2.4rem;
+  color: #003e3e;
+  margin-bottom: 40px;
+}
+
+.plan-cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.plan-card {
+  background-color: #fff;
+  border: 2px solid #00c1a0;
+  border-radius: 20px;
+  padding: 30px 20px;
+  width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 193, 160, 0.2);
+}
+
+.plan-card h3 {
+  font-size: 1.5rem;
+  color: #003e3e;
+  margin-bottom: 10px;
+}
+
+.plan-card .price {
+  font-size: 1.2rem;
+  color: #00c1a0;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+  text-align: left;
+}
+
+.plan-card ul li {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.plan-card.destaque {
+  border-color: #00897b;
+  background-color: #e0f4f2;
+}
+/* container interno da hero — garante que tudo fique acima do overlay */
+.hero-inner {
+  position: relative;
+  z-index: 2; /* acima do ::after da hero */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+/* imagem principal no topo da página (coruja) */
+.coruja-topo {
+  width: 120px;
+  max-width: 35%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  animation: flutuar 3.8s ease-in-out infinite;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.12));
+}
+
+
+/* animação de flutuação */
+@keyframes flutuar {
+  0%, 100% { transform: translateY(0); }
+  50%     { transform: translateY(-8px); }
+}
+.hero::after {
+  z-index: 1; 
+}
+.mascote-coruja {
+  display: block;
+  width: 72px;
+  height: auto;
+  margin: 12px auto 0 auto;
+}

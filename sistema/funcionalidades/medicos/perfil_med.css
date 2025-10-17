@@ -1,0 +1,129 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8ed;
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: #166666;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    min-height: 100vh;
+}
+
+.sidebar h1.logo {
+    margin-bottom: 40px;
+    font-size: 28px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar ul li:hover {
+    background-color: #145050;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    padding: 12px 20px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #aa2222;
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+    flex: 1;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.perfil {
+    width: 280px;
+    text-align: center;
+}
+
+.perfil img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.circle-avatar {
+    width: 120px;
+    height: 120px;
+    background: #ccc;
+    border-radius: 50%;
+    font-size: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.perfil h2 {
+    margin-top: 15px;
+    font-size: 20px;
+}
+
+.editar {
+    flex: 1;
+}
+
+.editar form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.editar label {
+    font-weight: bold;
+}
+
+.editar input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.editar button {
+    background-color: #166666;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.editar button:hover {
+    background-color: #145050;
+}
