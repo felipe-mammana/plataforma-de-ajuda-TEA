@@ -1,8 +1,7 @@
 <?php
-// exercicio_pontos_desafio.php
 require_once 'C:xampp/htdocs/tentativa-1/helpers.php';
 
-// Verifica o tipo de usuário logado e chama a função de autenticação correta
+
 if (isset($_SESSION['id_user']) && !empty($_SESSION['id_user'])) {
     $id = ensureLoggedInUser();
     $role = 'user';
@@ -10,7 +9,7 @@ if (isset($_SESSION['id_user']) && !empty($_SESSION['id_user'])) {
     $id = ensureLoggedInMedico();
     $role = 'medico';
 } else {
-    // Se não houver ninguém logado, redireciona para a página de login do usuário
+   
     header('Location: /tentativa-1/index/login/login_user.php');
     exit();
 }
@@ -164,7 +163,6 @@ $id_ex = isset($_GET['id_ex']) ? intval($_GET['id_ex']) : 1;
             <button id="btnReiniciar" onclick="reiniciarJogo()">🔄 Reiniciar</button>
         </div>
         
-        <!-- BOTÕES DE PROGRESSO (APENAS QUANDO CONCLUÍDO) -->
         <div id="progressoContainer" class="controles">
             <button class="btn-progresso" onclick="marcarProgresso('sozinho')" style="background-color: #27ae60;">✅ Fez Sozinho</button>
             <button class="btn-progresso" onclick="marcarProgresso('ajuda')" style="background-color: #f39c12;">🟠 Fez com Ajuda</button>
@@ -295,14 +293,14 @@ $id_ex = isset($_GET['id_ex']) ? intval($_GET['id_ex']) : 1;
         }
 
         async function marcarProgresso(tipo) {
-            // Se for médico, apenas mostra a mensagem e fecha a janela
+          
             if (userRole === 'medico') {
                 mostrarConfirmacao('Fechando a aba...', false);
                 setTimeout(() => { try { window.close(); } catch(e) {} }, 1000);
                 return;
             }
 
-            // Se for usuário, executa a lógica de salvamento
+         
             if (userRole === 'user') {
                 const mensagens = {
                     'sozinho': '✅ Registrado: Fez sozinho!',
@@ -339,7 +337,7 @@ $id_ex = isset($_GET['id_ex']) ? intval($_GET['id_ex']) : 1;
             confirmacao.style.backgroundColor = isError ? 'rgba(231, 76, 60, 0.9)' : 'rgba(46, 204, 113, 0.9)';
             confirmacao.style.display = 'block';
                 
-    // Reiniciar a animação
+  
     confirmacao.style.animation = 'none';
     setTimeout(() => {
         confirmacao.style.animation = 'fadeInOut 3s forwards';
