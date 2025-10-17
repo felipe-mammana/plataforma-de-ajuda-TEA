@@ -6,11 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"];
     $senha = $_POST["senha"];
     
-    // Select user from 'tb_login'
     $sql = "SELECT id_user, email, senha FROM tb_login WHERE email = ? AND senha = ? AND tipo = 'user'";
     $stmt = mysqli_prepare($cone, $sql);
     
-    // Check if the prepare statement was successful
     if ($stmt === false) {
         $erro = "Erro ao preparar a consulta de login: " . mysqli_error($cone);
     } else {
@@ -22,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $usuario = mysqli_fetch_assoc($resultado);
             $id_user = $usuario['id_user'];
 
-            // Check if payment is approved for the user
             $sql_pagamento = "SELECT status FROM tb_pagamentos WHERE id_user = ? ORDER BY criado_em DESC LIMIT 1";
             $stmt_pagamento = mysqli_prepare($cone, $sql_pagamento);
             
@@ -34,14 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $resultado_pagamento = mysqli_stmt_get_result($stmt_pagamento);
                 $pagamento = mysqli_fetch_assoc($resultado_pagamento);
 
-                // Check if payment is approved
                 if ($pagamento && $pagamento['status'] === 'aprovado') {
                     // Save session data
                     $_SESSION['logado'] = true;
                     $_SESSION['id_user'] = $id_user;
                     $_SESSION['email'] = $usuario['email'];
 
-                    // Redirect to the user's chat
                     header("Location: /tentativa-1/sistema/pacientes/sistema.php");
                     exit();
                 } else {
