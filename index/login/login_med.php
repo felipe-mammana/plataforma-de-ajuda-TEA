@@ -6,7 +6,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"]);
     $senha = trim($_POST["senha"]);
     
-    // Busca também o ID do médico
     $sql = "SELECT l.id_med, l.email, l.senha, m.nome
             FROM tb_login l
             JOIN tb_medico m ON m.id_med = l.id_med
@@ -21,8 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($resultado && mysqli_num_rows($resultado) === 1) {
         $usuario = mysqli_fetch_assoc($resultado);
 
-        // Se estiver usando senha hash, usar password_verify()
-        // Aqui vou deixar como comparação simples para manter compatibilidade
+        
         if ($usuario['senha'] === $senha) {
             // Salva os dados principais na sessão
             $_SESSION['logado'] = true;
