@@ -4,7 +4,6 @@ $id_med = ensureLoggedInMedico(); // garante que só médico logado acesse
 
 include "C:xampp/htdocs/tentativa-1/conexao.php"; 
 
-// Buscar exercícios no banco
 $sql = "SELECT id_ex, nome, grau, tipos, arquivo, link, foto FROM tb_exercicios";
 $result = $cone->query($sql);
 ?>
@@ -111,7 +110,6 @@ $result = $cone->query($sql);
       background: var(--accent);
     }
 
-    /* Conteúdo */
     .main-content {
       flex: 1;
       margin-left: 240px;
@@ -215,7 +213,6 @@ $result = $cone->query($sql);
   </style>
 </head>
 <body>
-  <!-- Sidebar -->
   <div class="sidebar">
     <div class="brand">
       <img src="/tentativa-1/sistema/pacientes/icons/logo.png" alt="Logo Altus">
@@ -229,7 +226,6 @@ $result = $cone->query($sql);
     </div>
   </div>
 
-  <!-- Conteúdo -->
   <div class="main-content">
     <h2>Exercícios disponíveis</h2>
 
