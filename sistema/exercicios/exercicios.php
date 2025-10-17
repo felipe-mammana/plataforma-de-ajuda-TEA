@@ -4,11 +4,9 @@ $id_user = ensureLoggedInUser();
 
 include "C:xampp/htdocs/tentativa-1/conexao.php"; 
 
-// Buscar exercícios no banco
 $sql = "SELECT id_ex, nome, grau, tipos, arquivo, link, foto FROM tb_exercicios";
 $result = $cone->query($sql);
 
-// carregar progresso do usuario
 $progresso = [];
 $stmtp = $cone->prepare("SELECT id_ex, ex_feitos, ex_restantes FROM tb_progresso WHERE id_user = ?");
 if ($stmtp) {
@@ -274,7 +272,6 @@ if ($stmtp) {
     </div>
   </div>
 
-  <!-- Conteúdo -->
   <div class="main-content">
     
     <h2>Selecione o exercício de hoje!</h2>
